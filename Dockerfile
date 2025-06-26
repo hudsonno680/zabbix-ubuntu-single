@@ -19,7 +19,7 @@ RUN apt install -y \
     zabbix-sql-scripts \
     zabbix-agent \
     supervisor net-tools && \
-    apt clean
+    apt clean && rm -rf /var/lib/apt/lists/*
 
 # Copia configs e scripts
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
