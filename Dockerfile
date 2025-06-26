@@ -15,8 +15,9 @@ RUN apt install -y \
     mysql-server \
     zabbix-server-mysql \
     zabbix-frontend-php \
-    apache2 \
-    php php-mysql php-gd php-xml php-bcmath php-mbstring \
+    zabbix-apache-conf \
+    zabbix-sql-scripts \
+    zabbix-agent \
     supervisor net-tools && \
     apt clean
 
@@ -25,6 +26,6 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-EXPOSE 80 10051
+EXPOSE 8080 10051
 
 CMD ["/entrypoint.sh"]
