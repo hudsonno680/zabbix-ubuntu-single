@@ -1,16 +1,21 @@
 FROM ubuntu:24.04
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV LANG=en_US.UTF-8
+ENV LANGUAGE=en_US:en
+ENV LC_ALL=en_US.UTF-8
 
-# Instala dependências básicas
-RUN apt update && apt install -y wget gnupg lsb-release
+# Instala dependências básicas e suporte a locale
+RUN apt update && apt install -y wget gnupg lsb-release locales && \
+    locale-gen en_US.UTF-8 pt_BR.UTF-8 && \
+    update-locale LANG=en_US.UTF-8
 
-# Adiciona repositório do Zabbix para Ubuntu 22.04 (compatível)
-RUN wget https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.0+ubuntu24.04_all.deb && \
-    dpkg -i zabbix-release_latest_7.0+ubuntu24.04_all.deb && \
+# Adiciona repositório oficial do Zabbix 7.0 para Ubuntu 24.04
+RUN wget -O /tmp/zabbix-release.deb https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_7.0-4+ubuntu24.04_all.deb && \
+    dpkg -i /tmp/zabbix-release.deb && rm /tmp/zabbix-release.deb && \
     apt update
 
-# Instala componentes Zabbix e serviços
+# Instala Zabbix, MySQL, Apache, PHP e utilitários
 RUN apt install -y \
     mysql-server \
     zabbix-server-mysql \
