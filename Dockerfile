@@ -6,8 +6,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update && apt install -y wget gnupg lsb-release
 
 # Adiciona repositório do Zabbix para Ubuntu 22.04 (compatível)
-RUN wget https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_7.0-1+ubuntu22.04_all.deb && \
-    dpkg -i zabbix-release_7.0-1+ubuntu22.04_all.deb && \
+RUN wget https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.0+ubuntu24.04_all.deb && \
+    dpkg -i zabbix-release_latest_7.0+ubuntu24.04_all.deb && \
     apt update
 
 # Instala componentes Zabbix e serviços
