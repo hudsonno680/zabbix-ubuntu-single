@@ -10,4 +10,4 @@ https://www.zabbix.com/download?zabbix=7.0&os_distribution=ubuntu&os_version=24.
 
 ```bash
 docker build -t zabbix-ubuntu-single .
-docker run -d --name zabbix-allinone -p 8080:80 -p 10051:10051 zabbix-ubuntu-single
+docker run -d --name zabbix-allinone -p 8080:8080 -p 10051:10051 zabbix-ubuntu-single
