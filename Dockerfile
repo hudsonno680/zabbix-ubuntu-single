@@ -11,7 +11,7 @@ RUN apt update && apt install -y wget gnupg lsb-release locales && \
     update-locale LANG=en_US.UTF-8
 
 # Adiciona repositório oficial do Zabbix 7.0 para Ubuntu 24.04
-RUN wget -O /tmp/zabbix-release.deb https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_7.0-4+ubuntu24.04_all.deb && \
+RUN wget -O /tmp/zabbix-release.deb https://repo.zabbix.com/zabbix/7.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_latest_7.0+ubuntu24.04_all.deb && \
     dpkg -i /tmp/zabbix-release.deb && rm /tmp/zabbix-release.deb && \
     apt update
 
